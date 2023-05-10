@@ -1,11 +1,43 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useAppDispatch } from '../store/hooks';
+import { fetchCurrentUser } from '../store/user/action';
+import Loading from '../../features/loading/Loading';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ROUTE, USER_FORM } from '../utilities/enums';
+import LoginPage from '../../features/user/LoginPage';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
-  return (
-    <div>
-      <h1>Hello, World</h1>
-    </div>
+  const [loading, setLoading] = useState(true);
+
+  const dispatch = useAppDispatch();
+
+  const initApp = useCallback(
+    async () => {
+      try {
+        await dispatch(fetchCurrentUser());
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [dispatch],
   )
+
+  useEffect(() => {
+    initApp().then(() => setLoading(false));
+  }, [initApp],)
+
+  if (loading) return <Loading />
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path={ROUTE.HOME} element={<PrivateRoute />}></Route>
+        <Route path={ROUTE.LOGIN} element={<LoginPage formType={USER_FORM.LOGIN} />} />
+      </Routes>
+    </BrowserRouter>
+
+  );
 }
 
 export default App

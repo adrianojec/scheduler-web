@@ -13,3 +13,8 @@ export enum REQUEST_STATUS_MESSAGE{
 export enum SLICE_NAME {
     USERS = "users" 
 }
+
+export enum ROUTE {
+    LOGIN = "/login",
+    HOME = "/"
+}

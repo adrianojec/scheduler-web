@@ -5,11 +5,11 @@ import { SLICE_NAME } from "../../utilities/enums";
 import { loginUser, registerUser } from "./action";
 import { fetchCurrentUser } from "./action";
 
-export const initialState : UserState = {
+export const initialState: UserState = {
     isFetching: false,
     user: null,
     token: localStorage.getItem(USER)
-} 
+}
 
 export const userSlice = createSlice({
     name: SLICE_NAME.USERS,
@@ -23,7 +23,7 @@ export const userSlice = createSlice({
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.user = action.payload,
-            localStorage.setItem(USER, JSON.stringify(action.payload));
+                localStorage.setItem(USER, JSON.stringify(action.payload));
         });
         builder.addCase(loginUser.rejected, (state, _) => {
             state.isFetching = false;
@@ -47,10 +47,12 @@ export const userSlice = createSlice({
         builder.addCase(fetchCurrentUser.fulfilled, (state, action) => {
             state.isFetching = false;
             state.user = action.payload,
-            localStorage.setItem(USER, JSON.stringify(action.payload));
+                localStorage.setItem(USER, JSON.stringify(action.payload));
         });
         builder.addCase(fetchCurrentUser.rejected, (state, _) => {
             state.isFetching = false;
         });
     }
 });
+
+export const userReducer = userSlice.reducer
