@@ -18,3 +18,7 @@ export enum ROUTE {
     LOGIN = "/login",
     HOME = "/"
 }
+
+export enum FORM_TYPE {
+    TEXT = "text"
+}
