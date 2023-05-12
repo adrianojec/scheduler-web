@@ -41,11 +41,9 @@ const FormGroup = ({
         required={isRequired}
         isValid={isRequired && isEmpty == false}
       />
-      {isEmpty && (
-        <Form.Control.Feedback type="invalid">
-          {validationMessage}
-        </Form.Control.Feedback>
-      )}
+      <Form.Control.Feedback type="invalid">
+        {isEmpty && validationMessage}
+      </Form.Control.Feedback>
     </Form.Group>
   );
 };

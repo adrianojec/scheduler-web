@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "../store/hooks";
-import { fetchCurrentUser } from "../store/user/action";
+import { fetchCurrentUser } from "../store/auth/action";
 import Loading from "../../features/loading/Loading";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ROUTE, USER_FORM } from "../utilities/enums";
+import { ROUTE, AUTH_FORM } from "../utilities/enums";
 import LoginPage from "../../features/auth/AuthPage";
 import PrivateRoute from "./PrivateRoute";
 
@@ -32,7 +32,11 @@ function App() {
         <Route path={ROUTE.HOME} element={<PrivateRoute />}></Route>
         <Route
           path={ROUTE.LOGIN}
-          element={<LoginPage formType={USER_FORM.LOGIN} />}
+          element={<LoginPage formType={AUTH_FORM.LOGIN} />}
+        />
+        <Route
+          path={ROUTE.REGISTER}
+          element={<LoginPage formType={AUTH_FORM.REGISTER} />}
         />
       </Routes>
     </BrowserRouter>

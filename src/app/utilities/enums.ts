@@ -1,4 +1,5 @@
-export enum USER_FORM{
+
+export enum AUTH_FORM{
     LOGIN,
     REGISTER
 }
@@ -15,10 +16,13 @@ export enum SLICE_NAME {
 }
 
 export enum ROUTE {
+    HOME = "/",
     LOGIN = "/login",
-    HOME = "/"
+    REGISTER = "/register",
 }
 
 export enum FORM_TYPE {
+    EMAIL = "email",
+    PASSWORD = "password",
     TEXT = "text"
 }
