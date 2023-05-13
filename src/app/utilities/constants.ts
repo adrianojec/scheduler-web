@@ -14,9 +14,12 @@ export const LOGIN_IMAGE = "/images/login.png"
 export const EMAIL_IS_REQUIRED = "Email is required.";
 export const FIRST_NAME_IS_REQUIRED = "First name is required.";
 export const LAST_NAME_IS_REQUIRED = "Last name is required.";
+export const PASSWORD_IS_REQUIRED = "Password is required.";
+export const PASSWORD_NOT_MATCHED = "Password didn't match.";
 export const USER_NAME_IS_REQUIRED = "User name is required.";
 
 // String constants
+export const ALREADY_HAVE_AN_ACCOUNT = "Already have an account?";
 export const CONFIRM_PASSWORD = "Confirm Password";
 export const DONT_HAVE_AN_ACCOUNT = "Don't have an account yet?";
 export const EMAIL = "Email";
@@ -25,7 +28,8 @@ export const FIRST_NAME = "First name";
 export const LAST_NAME = "Last name";
 export const LOGIN = "Login";
 export const PASSWORD = "Password";
-export const SIGN_UP = "Sign Up";
+export const SIGN_IN = "Sign in";
+export const SIGN_UP = "Sign up";
 export const REGISTER = "Register";
 export const USER = "User";
 export const USER_NAME = "User name";

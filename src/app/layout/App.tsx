@@ -14,7 +14,7 @@ function App() {
 
   const initApp = useCallback(async () => {
     try {
-      await dispatch(fetchCurrentUser());
+      if (localStorage.length != 0) await dispatch(fetchCurrentUser());
     } catch (error) {
       console.log(error);
     }

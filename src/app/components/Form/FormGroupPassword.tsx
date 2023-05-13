@@ -7,25 +7,25 @@ interface Props {
   onChange?: (evt: any) => void;
   value?: string;
   label?: string;
-  isRequired?: boolean;
+  showErrorMessage?: boolean;
+  isInvalid?: boolean;
   width?: "w-25" | "w-50" | "w-75" | "w-100";
   className?: string;
   validationMessage?: string;
 }
 
-const FormGroup = ({
+const FormGroupPassword = ({
   type,
   placeholder,
   value,
   label,
-  isRequired = false,
+  showErrorMessage = false,
+  isInvalid = false,
   width = "w-100",
   className,
   onChange,
   validationMessage,
 }: Props) => {
-  const [isEmpty, setIsEmpty] = useState<boolean>();
-
   return (
     <Form.Group className={`${width} ${className} mb-4 me-2`}>
       {!!label && <Form.Label>{label}</Form.Label>}
@@ -34,18 +34,17 @@ const FormGroup = ({
         placeholder={placeholder}
         value={value}
         onChange={(evt) => {
-          setIsEmpty(!evt.target.value);
           !!onChange && onChange!(evt.target.value);
         }}
-        isInvalid={isRequired && isEmpty}
-        required={isRequired}
-        isValid={isRequired && isEmpty == false}
+        isInvalid={isInvalid}
+        required={showErrorMessage}
+        isValid={!showErrorMessage}
       />
       <Form.Control.Feedback type="invalid">
-        {isEmpty && validationMessage}
+        {showErrorMessage && validationMessage}
       </Form.Control.Feedback>
     </Form.Group>
   );
 };
 
-export default FormGroup;
+export default FormGroupPassword;

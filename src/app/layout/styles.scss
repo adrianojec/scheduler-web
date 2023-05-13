@@ -43,3 +43,9 @@ button.btn {
     color: var(--secondary);
   }
 }
+
+.center-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
