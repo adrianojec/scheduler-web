@@ -16,9 +16,13 @@ export enum SLICE_NAME {
 }
 
 export enum ROUTE {
+    BRANCHES = "/branches",
+    CLIENTS = "/clients",
+    EMPLOYEES = "/employees",
     HOME = "/",
     LOGIN = "/login",
     REGISTER = "/register",
+    SERVICES = "/services"
 }
 
 export enum FORM_TYPE {

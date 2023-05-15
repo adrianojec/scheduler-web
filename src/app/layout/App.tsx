@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { fetchCurrentUser } from "../store/auth/action";
 import Loading from "../../features/loading/Loading";
@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTE, AUTH_FORM } from "../utilities/enums";
 import LoginPage from "../../features/auth/AuthPage";
 import PrivateRoute from "./PrivateRoute";
+import { USER } from "../utilities/constants";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,8 @@ function App() {
 
   const initApp = useCallback(async () => {
     try {
-      if (localStorage.length != 0) await dispatch(fetchCurrentUser());
+      if (localStorage.getItem(USER) != null)
+        await dispatch(fetchCurrentUser());
     } catch (error) {
       console.log(error);
     }

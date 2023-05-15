@@ -49,3 +49,28 @@ button.btn {
   align-items: center;
   justify-content: center;
 }
+
+div.flex-column.nav {
+  color: white;
+}
+
+div.col.sidenav {
+  height: 100%;
+  background-color: var(--darkPrimary);
+  padding: 0;
+
+  a.nav-link {
+    color: white;
+    padding-left: 32px;
+
+    &:hover {
+      background-color: white;
+      color: var(--darkPrimary);
+    }
+
+    &.active {
+      background-color: white;
+      color: var(--darkPrimary);
+    }
+  }
+}

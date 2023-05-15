@@ -64,12 +64,16 @@ const LoginPage = ({ formType }: Props) => {
   const handleLogin = async () => {
     await dispatch(loginUser(loggedUser));
     setLoggedUser({ ...initialLoginFormValue });
-    console.log(loggedUser);
+    navigate(ROUTE.HOME);
   };
 
   const handleRegisterUser = async () => {
-    if (isPasswordMatched) await dispatch(registerUser(newUser));
-    console.log(newUser);
+    if (isPasswordMatched) {
+      await dispatch(registerUser(newUser));
+      setNewUser({ ...initialRegisterFormValue });
+      // TODO: Replace this to Welcome Page for new users
+      navigate(ROUTE.HOME);
+    }
   };
 
   const handleSwitchAuthForm = () =>
@@ -93,6 +97,7 @@ const LoginPage = ({ formType }: Props) => {
                       <FormGroup
                         type={FORM_TYPE.TEXT}
                         label={FIRST_NAME}
+                        value={newUser.firstName}
                         validationMessage={FIRST_NAME_IS_REQUIRED}
                         onChange={(text) =>
                           setNewUser((prev) => ({ ...prev, firstName: text }))
@@ -105,6 +110,7 @@ const LoginPage = ({ formType }: Props) => {
                       <FormGroup
                         type={FORM_TYPE.TEXT}
                         label={LAST_NAME}
+                        value={newUser.lastName}
                         validationMessage={LAST_NAME_IS_REQUIRED}
                         onChange={(text) =>
                           setNewUser((prev) => ({ ...prev, lastName: text }))
@@ -117,6 +123,7 @@ const LoginPage = ({ formType }: Props) => {
                   <FormGroup
                     type={FORM_TYPE.TEXT}
                     label={USER_NAME}
+                    value={newUser.userName}
                     validationMessage={USER_NAME_IS_REQUIRED}
                     onChange={(text) =>
                       setNewUser((prev) => ({ ...prev, userName: text }))
@@ -129,16 +136,17 @@ const LoginPage = ({ formType }: Props) => {
                 type={FORM_TYPE.EMAIL}
                 label={EMAIL}
                 validationMessage={EMAIL_IS_REQUIRED}
+                value={loginForm ? loggedUser.email : newUser.email}
                 onChange={(text) =>
                   loginForm
                     ? setLoggedUser((prev) => ({ ...prev, email: text }))
                     : setNewUser((prev) => ({ ...prev, email: text }))
                 }
-                isRequired
               />
               <FormGroup
                 type={FORM_TYPE.PASSWORD}
                 label={PASSWORD}
+                value={loginForm ? loggedUser.password : newUser.password}
                 validationMessage={
                   registerForm ? PASSWORD_IS_REQUIRED : EMPTY_STRING
                 }
@@ -153,6 +161,7 @@ const LoginPage = ({ formType }: Props) => {
                   <FormGroupPassword
                     type={FORM_TYPE.PASSWORD}
                     label={CONFIRM_PASSWORD}
+                    value={newUser.confirmPassword}
                     validationMessage={PASSWORD_NOT_MATCHED}
                     onChange={(text) => {
                       setNewUser((prev) => ({
@@ -160,7 +169,6 @@ const LoginPage = ({ formType }: Props) => {
                         confirmPassword: text,
                       }));
                       setIsPasswordMatched(newUser.password === text);
-                      console.log(newUser.password === text);
                     }}
                     isInvalid={
                       newUser.confirmPassword != EMPTY_STRING &&
