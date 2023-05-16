@@ -3,6 +3,8 @@
   --darkPrimary: #194865;
   --secondary: #ffab00;
   --defaultFont: "Nunito", sans-serif;
+  // --titleFont: "Barlow Condensed", sans-serif;
+  --titleFont: "Bungee Shade", cursive;
 }
 
 * {
@@ -73,4 +75,20 @@ div.col.sidenav {
       color: var(--darkPrimary);
     }
   }
+}
+
+nav.navbar.navbar-expand.navbar-light {
+  background-color: var(--darkPrimary);
+  width: 100%;
+  text-indent: 32px;
+}
+
+.text-icon {
+  color: white;
+  font-family: var(--titleFont);
+  font-size: 36px;
+}
+
+span.navbar-text {
+  color: white;
 }
